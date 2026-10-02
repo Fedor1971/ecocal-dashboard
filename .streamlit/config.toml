@@ -1,0 +1,8 @@
+[server]
+# Local-only tool -- bind to localhost, not all interfaces. Streamlit's
+# default (headless) binds 0.0.0.0, which makes a personal dev app reachable
+# from the network.
+address = "127.0.0.1"
+
+[browser]
+gatherUsageStats = false
