@@ -1,8 +1,20 @@
+[theme]
+base = "light"
+primaryColor = "#008D7F"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3F3F3"
+textColor = "#252631"
+font = "sans serif"
+
 [server]
-# Local-only tool -- bind to localhost, not all interfaces. Streamlit's
-# default (headless) binds 0.0.0.0, which makes a personal dev app reachable
-# from the network.
-address = "127.0.0.1"
+# Local-only tool: bind to localhost, not all interfaces (Streamlit's default 0.0.0.0
+# would make the app reachable from the network).
+headless = true
+address = "localhost"
+port = 8501
+
+[client]
+toolbarMode = "minimal"
 
 [browser]
 gatherUsageStats = false

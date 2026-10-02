@@ -11,9 +11,18 @@ import datetime as dt
 import streamlit as st
 
 from data import fetch_calendar, fetch_event_details
+from style import PALETTE, inject
 
 st.set_page_config(page_title="EcoCal Dashboard", layout="wide")
-st.title("EcoCal Dashboard")
+inject(st)
+st.markdown('<div class="eu-title">EcoCal Dashboard</div>', unsafe_allow_html=True)
+
+# Impact cell colours, from the Euronext palette (strongest = darkest teal).
+IMPACT_STYLE = {
+    "HIGH": f"background-color:{PALETTE['dark']};color:#fff;font-weight:600",
+    "MEDIUM": f"background-color:{PALETTE['tint']};color:{PALETTE['dark']};font-weight:600",
+    "LOW": f"background-color:{PALETTE['panel']};color:{PALETTE['text']}",
+}
 
 # --- Sidebar: date range + filters -----------------------------------------
 today = dt.date.today()
@@ -52,7 +61,7 @@ st.caption(f"{len(filtered_df)} of {len(calendar_df)} events in range")
 # --- Main table --------------------------------------------------------------
 display_df = filtered_df[["Start", "Name", "Impact", "Currency"]]
 selection = st.dataframe(
-    display_df,
+    display_df.style.map(lambda v: IMPACT_STYLE.get(v, ""), subset=["Impact"]),
     use_container_width=True,
     hide_index=True,
     on_select="rerun",
