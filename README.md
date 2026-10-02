@@ -46,3 +46,12 @@ The offline zip contains a `wheels` folder, so no PyPI access is needed. The app
 
 Wheels are tied to the recipient's Python version (`python --version`) and Windows x64.
 `ecocal` is installed with `--no-deps` by `run.bat` (see Setup above for why).
+
+### Hosting on Streamlit Community Cloud
+
+`vendor/ecocal/` is a vendored copy of ecocal 1.2.1 (MIT, see its LICENSE), so the cloud can
+install everything from the plain `requirements.txt` (no `--no-deps` step, no pandas pin).
+`data.py` appends `vendor/` to `sys.path`; a pip-installed ecocal (via `run.bat`) takes precedence.
+Deploy: share.streamlit.io -> New app -> repo `ecocal-dashboard`, branch `master`, main file `app.py`.
+Set the app to **private** (Share -> viewers) - there is no auth in the app itself, and every
+use calls the undocumented fxstreet API from the host's IP.

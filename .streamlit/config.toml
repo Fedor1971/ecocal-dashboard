@@ -7,11 +7,9 @@ textColor = "#252631"
 font = "sans serif"
 
 [server]
-# Local-only tool: bind to localhost, not all interfaces (Streamlit's default 0.0.0.0
-# would make the app reachable from the network).
+# Binding address/port are set per-launch: run.bat passes --server.address localhost
+# (local-only), and Streamlit Community Cloud needs to manage them itself.
 headless = true
-address = "localhost"
-port = 8501
 
 [client]
 toolbarMode = "minimal"

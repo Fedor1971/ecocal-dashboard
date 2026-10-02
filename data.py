@@ -10,7 +10,15 @@ failure).
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import numpy as np
+
+# Vendored copy of ecocal (MIT) for hosts like Streamlit Community Cloud where
+# a --no-deps install isn't possible. Appended last, so a pip-installed ecocal
+# (as set up by run.bat) always wins.
+sys.path.append(str(Path(__file__).parent / "vendor"))
 
 np.NaN = np.nan  # noqa: N816 -- restoring a removed numpy alias, not a new name
 
